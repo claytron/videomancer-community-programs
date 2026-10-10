@@ -95,7 +95,7 @@ With Delay off centre, it lets the Shape peaks push either with or against the u
 
 ## Bypass
 
-Bypass passes the input video directly to the output through a 6-clock delay line that matches the processing pipeline latency, so sync alignment is preserved whether the effect is active or not.
+Bypass passes the input video directly to the output through a 8-clock delay line that matches the processing pipeline latency, so sync alignment is preserved whether the effect is active or not.
 
 ## Typical Use
 
@@ -110,7 +110,7 @@ Bypass passes the input video directly to the output through a 6-clock delay lin
 ## Technical Notes
 
 - **Colour space:** YUV 4:4:4, 10-bit per channel
-- **Pipeline latency:** 6 clock cycles (2 for the line buffer read, 4 for the wet/dry interpolator)
+- **Pipeline latency:** 8 clock cycles (2 for the line buffer read, 4 for the wet/dry interpolator, 2 output pad to meet the SDK divisible-by-4 rule)
 - **Line buffer:** Three dual-bank BRAMs (Y/U/V), 2048 entries each — one line written while the other is read at the shifted address
 - **Edge handling:** Out-of-range offsets clamp to the edge pixel instead of wrapping into uninitialised BRAM entries
 - **Noise source:** Free-running 16-bit LFSR, lower 10 bits used as the random offset
